@@ -1,4 +1,4 @@
-const API_BASE = "me-api-playground-production-0cb4.up.railway.app";
+const API_BASE = "https://me-api-playground-production-0cb4.up.railway.app/";
 
 window.onload = function () {
     loadProfile();
