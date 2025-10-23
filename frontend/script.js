@@ -1,4 +1,4 @@
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = "me-api-playground-production-0cb4.up.railway.app";
 
 window.onload = function () {
     loadProfile();
