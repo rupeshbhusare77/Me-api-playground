@@ -6,120 +6,114 @@ models.Base.metadata.create_all(bind=engine)
 
 def seed():
     db = SessionLocal()
-    
-    # Clear existing
     db.query(models.Link).delete()
     db.query(models.Education).delete()
     db.query(models.Work).delete()
     db.query(models.Project).delete()
     db.query(models.Skill).delete()
     db.query(models.Profile).delete()
-    
-    # Create profile
+
     prof = models.Profile(
-        name="Allmight",
-        email="your.email@example.com",
-        bio="Computer Science student passionate about software development, machine learning, and cybersecurity",
-        phone="+91-XXXXXXXXXX",
-        location="India",
-        resume_link="https://your-resume-link.com"
+        name="Rupesh Bhusare",
+        email="bhusare.hemant.22031@iitgoa.ac.in",
+        bio="CSE undergrad at IIT Goa. Passionate about coding, creating visuals, and solving real-world problems. Enjoys exploring tech and expressing ideas through digital creativity.",
+        phone="+91 9579624640",
+        location="Kolhapur, Maharashtra, India",
+        resume_link="https://drive.google.com/file/d/1Y7Sif3T51jAxJWQONthkYbiYhgblvOr_/view?usp=drive_link"
     )
     db.add(prof)
     db.commit()
     db.refresh(prof)
-    
-    # Skills
-    skills_data = [
-        {"name": "Python", "level": "Advanced", "years_experience": 3},
-        {"name": "Flutter", "level": "Advanced", "years_experience": 2},
-        {"name": "Dart", "level": "Advanced", "years_experience": 2},
-        {"name": "FastAPI", "level": "Intermediate", "years_experience": 1},
-        {"name": "Machine Learning", "level": "Intermediate", "years_experience": 2},
-        {"name": "Cryptography", "level": "Intermediate", "years_experience": 1},
-        {"name": "Pine Script", "level": "Advanced", "years_experience": 1},
-        {"name": "Java", "level": "Intermediate", "years_experience": 2},
-        {"name": "C", "level": "Intermediate", "years_experience": 2},
+
+    skills_list = [
+        "HTML5", "CSS3", "JavaScript", "React", "Tailwind", "Figma",
+        "Node.js", "MongoDB", "Express", "MySQL", "Firebase",
+        "C", "C++", "Python", "VHDL",
+        "Git", "Postman", "AWS", "Linux", "VS Code",
+        "Bash", "PowerShell", "AutoCAD", "Matlab", "LaTeX", "Wireshark", "Illustrator", "Photoshop"
     ]
-    
-    for s in skills_data:
-        skill = models.Skill(profile_id=prof.id, **s)
-        db.add(skill)
-    
-    # Projects
+    for sk in skills_list:
+        db.add(models.Skill(profile_id=prof.id, name=sk))
+
     projects_data = [
         {
-            "title": "Flutter Expense Sharing App",
-            "description": "Comprehensive expense-sharing application with Google Sign-In, trip management, expense tracking, and payback calculations",
-            "tech_stack": ["Flutter", "Dart", "Firebase", "Google Sign-In"],
-            "github_link": "https://github.com/yourusername/expense-app",
-            "start_date": "2025-08",
-            "end_date": "2025-08"
+            "title": "Receipt Scanner",
+            "description": "Developed a Python tool using Azure AI Document Intelligence to automatically extract and structure data from receipt images, exporting results to JSON and CSV. Includes parallel processing, network retries, and mathematical result validation.",
+            "tech_stack": ["Python", "Azure AI", "OCR"],
+            "github_link": "https://github.com/rupeshbhusare77/receipt-scanner",
+            "live_link": ""
         },
         {
-            "title": "OCR Receipt Scanner",
-            "description": "Receipt scanning system using Python and Tesseract with preprocessing for bill analysis",
-            "tech_stack": ["Python", "Tesseract", "OpenCV", "Azure"],
-            "github_link": "https://github.com/yourusername/ocr-scanner",
-            "start_date": "2025-08",
-            "end_date": "2025-08"
+            "title": "GV Coding Scheme Extractor",
+            "description": "Generator for coding schemes satisfying the Gilbert–Varshamov bound. Randomized matrix generation and theoretical research with responsive frontend.",
+            "tech_stack": ["Cryptography", "Python", "HTML", "CSS", "JS"],
+            "github_link": "https://github.com/rupeshbhusare77/gv-coding-scheme-extractor",
+            "live_link": "https://gvcodingschemeextractor.pythonanywhere.com/"
         },
         {
-            "title": "Trading Indicators - Pine Script",
-            "description": "Advanced TradingView indicators with buy/sell signals, liquidity sweep detection, and stop-loss calculations",
-            "tech_stack": ["Pine Script", "TradingView"],
-            "github_link": "https://github.com/yourusername/trading-indicators",
-            "start_date": "2025-07",
-            "end_date": "2025-07"
+            "title": "Multi Level Feedback Queue Simulator (MLFQ)",
+            "description": "Visual simulator to demonstrate MLFQ CPU scheduling with dynamic queue management.",
+            "tech_stack": ["Operating system", "Web", "Python"],
+            "github_link": "https://github.com/vaibhavgupta856/Multi-Level-Feedback-Queue-Simulator",
+            "live_link": "https://vaibhavgupta856.github.io/Multi-Level-Feedback-Queue-Simulator/"
         },
         {
-            "title": "ChipWhisperer Security Analysis",
-            "description": "Side-channel analysis project using ChipWhisperer Nano for security research and power analysis",
-            "tech_stack": ["Python", "Jupyter", "ChipWhisperer", "C"],
-            "github_link": "https://github.com/yourusername/chipwhisperer-analysis",
-            "start_date": "2025-09",
-            "end_date": "2025-09"
+            "title": "TCP Congestion Control",
+            "description": "Simulation and analysis of TCP congestion control mechanisms using graphs and metrics.",
+            "tech_stack": ["Computer Networks", "Python"],
+            "github_link": "https://github.com/rupeshbhusare77/TCP-Congestion-control",
+            "live_link": ""
+        },
+        {
+            "title": "Portfolio Site",
+            "description": "My personal portfolio, built with modern CSS & JS.",
+            "tech_stack": ["Web Development", "HTML5", "CSS3", "JS"],
+            "github_link": "https://github.com/rupeshbhusare77/portfolio",
+            "live_link": "https://rupeshbhusare77.github.io/portfolio/"
+        },
+        {
+            "title": "QuickClick App",
+            "description": "Simple android game to test your reaction.",
+            "tech_stack": ["Android Development", "Kotlin", "XML"],
+            "github_link": "https://github.com/rupeshbhusare77/QuickClick_app",
+            "live_link": ""
         }
     ]
-    
     for p in projects_data:
-        proj = models.Project(profile_id=prof.id, **p)
-        db.add(proj)
-    
-    # Education
-    edu = models.Education(
+        db.add(models.Project(profile_id=prof.id, **p))
+
+    db.add(models.Education(
         profile_id=prof.id,
-        institution="Your University Name",
-        degree="Bachelor of Technology",
-        field="Computer Science",
+        institution="Indian Institute of Technology Goa",
+        degree="BTech",
+        field="Computer Science and Engineering",
         start_date="2022",
-        end_date="2026"
-    )
-    db.add(edu)
-    
-    # Work
-    work = models.Work(
-        profile_id=prof.id,
-        company="IUDX",
-        position="Software Developer (Applied)",
-        description="Applied for software development role",
-        start_date="2025-09",
         end_date="Present"
-    )
-    db.add(work)
-    
-    # Links
-    links_data = [
-        {"platform": "github", "url": "https://github.com/yourusername"},
-        {"platform": "linkedin", "url": "https://linkedin.com/in/yourusername"},
-        {"platform": "portfolio", "url": "https://yourportfolio.com"},
-    ]
-    
-    for l in links_data:
-        link = models.Link(profile_id=prof.id, **l)
-        db.add(link)
-    
+    ))
+    db.add(models.Education(
+        profile_id=prof.id,
+        institution="Shree Parashram Balaji Patil Highschool, Mudal",
+        degree="Class 12, HSC board (Maharashtra)",
+        field="Science",
+        start_date="2020",
+        end_date="2022"
+    ))
+
+    db.add(models.Work(
+        profile_id=prof.id,
+        company="IIT Goa",
+        position="Graphic Designer Head (Newsletter), Core Member (Design Club)",
+        description="Led campus design initiatives for the IIT Goa newsletter and core member organizing and leading hands-on design workshops.",
+        start_date="2023",
+        end_date="2024"
+    ))
+
+    db.add(models.Link(profile_id=prof.id, platform="github", url="https://github.com/rupeshbhusare77"))
+    db.add(models.Link(profile_id=prof.id, platform="linkedin", url="https://www.linkedin.com/in/rupesh-bhusare-7ba246256/"))
+    db.add(models.Link(profile_id=prof.id, platform="portfolio", url="https://rupeshbhusare77.github.io/portfolio/"))
+
     db.commit()
-    print("✅ Database seeded successfully!")
+    print("✅ Database seeded with real portfolio data!")
 
 if __name__ == "__main__":
     seed()
